@@ -25,7 +25,7 @@ const pages = [
 			}
 		]
 	}
-]
+];
 
 const compiledFunction = pug.compileFile('./src/template.pug');
 
@@ -41,7 +41,11 @@ async function generatePDF(html) {
 	const page = await browser.newPage();
 	await page.setContent(html);
 	const pdf = await page.pdf({
-		printBackground: true
+		printBackground: true,
+		// NOTE: default timeout is 30 seconds. We should be able to
+		// dynamically adjust this based on the size of the HTML generated
+		// from the pug template.
+		timeout: 0
 	});
 	await browser.close();
 	fs.writeFileSync('./out/index.pdf', pdf);
