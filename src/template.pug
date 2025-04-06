@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <style>
+            include index.css
+        </style>
+    </head>
+    <body>
+        for page in pages
+            <div class="page">
+                <h1>#{page.name}</h1>
+                for section in page.sections
+                    <h2>#{section.name}</h2>
+            </div>
+    </body>
+</html>
